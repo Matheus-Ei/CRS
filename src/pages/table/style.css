@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
+
+.head-table {
+  background-color: gray;
+  border: 1px solid #000;
+}
+
+.main-table-div {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.image-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result-price-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.image-container {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  font-family: "Boldonse", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.left-bar-div {
+  display: flex;
+  flex-direction: row;
+}
