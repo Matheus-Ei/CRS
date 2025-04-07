@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notes</title>
+
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="flex items-center justify-center flex-col gap-y-4 mt-10">
+    <h1
+      class="flex text-lg font-bold rounded-lg"
+    >
+      Notes table
+    </h1>
+
+    <div
+      id="notes-table"
+      class="shadow shadow-black p-2 flex items-center flex-col rounded-md justify-center w-64 py-4 mb-6"
+    ></div>
+
+    <h1
+      id="final-note"
+      class="flex items-center rounded-ld justify-center font-bold"
+    >
+      Final note: %%%
+    </h1>
+
+    <div class='flex gap-x-4'>
+    <button
+      id="add-notes-button"
+       class="bg-gray-200 focus:outline-none focus:border-none shadow cursor-pointer shadow-black p-2 flex font-bold rounded-lg select-none"
+    >
+      Add notes
+    </button>
+
+          <button
+      id="reset-button"
+       class="bg-gray-200 focus:outline-none focus:border-none shadow cursor-pointer shadow-black p-2 flex font-bold rounded-lg select-none"
+    >
+        Reset
+    </button>
+
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
