@@ -11,89 +11,63 @@
     />
   </head>
 
-  <body class="w-screen h-screen bg-black text-white pt-10">
-    <div
-      id="main-div"
-      class="w-full h-full flex flex-col items-center justify-start gap-y-6"
-    >
-      <form
-        class="flex flex-col gap-y-4 items-center justify-center w-full"
-        id="form"
-      >
+  <body class="w-screen h-screen flex justify-center bg-black text-white pt-10">
+    <div class="p-8 w-3/4 rounded-xl flex flex-col items-center justify-start gap-y-6">
+      <div class="flex flex-col gap-y-4 bg-gray-900 p-4 items-center justify-center rounded" id="form">
         <div class="flex gap-x-4">
-          <div class="flex flex-col">
-            <span class="select-none cursor-default">Title</span>
+          <input
+            id="title-input"
+            type="text"
+            placeholder="Title"
+            class="cursor-text select-none focus:outline-none rounded py-1 px-2 bg-blue-800 w-full"
+          />
 
-            <input
-              id="title-input"
-              type="text"
-              class="cursor-text select-none focus:outline-none rounded py-1 px-2 bg-blue-800 w-full"
-            />
-          </div>
+          <input
+            id="description-input"
+            placeholder="Description"
+            type="text"
+            class="cursor-text select-none focus:outline-none rounded py-1 px-2 bg-blue-800 w-full"
+          />
 
-          <div class="flex flex-col">
-            <span class="select-none cursor-default">Description</span>
+          <input
+            id="assign-input"
+            type="text"
+            placeholder="Assign"
+            class="cursor-text select-none focus:outline-none rounded py-1 px-2 bg-blue-800 w-full"
+          />
 
-            <input
-              id="description-input"
-              type="text"
-              class="cursor-text select-none focus:outline-none rounded py-1 px-2 bg-blue-800 w-full"
-            />
-          </div>
-
-          <div class="flex flex-col">
-            <span class="select-none cursor-default">Assign</span>
-
-            <input
-              id="assign-input"
-              type="text"
-              class="cursor-text select-none focus:outline-none rounded py-1 px-2 bg-blue-800 w-full"
-            />
-          </div>
-        </div>
-
-        <div class="flex gap-x-4">
           <input
             id="date-input"
             type="date"
             class="cursor-pointer select-none focus:outline-none bg-blue-800 rounded px-2 py-1 mr-6"
           />
+        </div>
 
+        <div class="flex gap-x-4 w-full">
           <input
             id="submit-form"
             type="submit"
-            class="cursor-pointer select-none bg-blue-700 rounded px-4 py-1 font-bold"
+            class="cursor-pointer select-none bg-blue-700 hover:bg-blue-600 rounded px-4 py-1 font-bold"
             value="Add task"
           />
 
-          <button
-            id="clear-button"
-            class="flex px-4 py-1 bg-red-700 rounded font-bold focus:outline-none"
-          >
+          <button 
+            id="clear-button" 
+            class="flex px-4 py-1 bg-red-700 hover:bg-red-600 rounded font-bold focus:outline-none">
             Clear tasks
           </button>
         </div>
-      </form>
+      </div>
 
-      <table id="table" class="flex justify-center rounded border-separate p-2">
-        <tbody id="table-body">
-          <tr>
-            <th class="w-48 rounded-l border-r-2 bg-blue-700">Title</th>
-            <th class="w-64 border-l-2 border-r-2 border-white bg-blue-700">
-              Description
-            </th>
-            <th class="w-48 border-l-2 border-r-2 border-white bg-blue-700">
-              Assign
-            </th>
-            <th class="w-32 border-l-2 border-r-2 border-white bg-blue-700">
-              Date
-            </th>
-            <th class="w-24 border-l-2 rounded-r border-white bg-blue-700">
-              Actions
-            </th>
-          </tr>
-        </tbody>
-      </table>
+      <div id="table" class="grid grid-cols-1 bg-gray-900 justify-center rounded p-2">
+        <div class="flex justify-between">
+          <p class="w-48 rounded-l text-center bg-blue-700">Title</p>
+          <p class="w-64 border-l border-white text-center bg-blue-700">Description</p>
+          <p class="w-48 border-l border-white text-center bg-blue-700">Assign</p>
+          <p class="w-48 border-l border-white text-center bg-blue-700">Date</p>
+          <p class="w-32 rounded-r border-l border-white text-center bg-blue-700">Actions</p>
+        </div>
+      </div>
     </div>
 
     <script src="./script.js"></script>

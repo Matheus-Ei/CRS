@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Calculator</title>
+
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="flex items-center justify-center w-screen h-screen m-0">
+    <div class="shadow shadow-black border border-gray-300 flex flex-col gap-y-2 items-center justify-center p-4 bg-gray-200 rounded-lg">
+      <div class='p-4 bg-gray-100 w-full border border-gray-300 rounded-lg text-lg text-right m-2' id='visor'>0</div>
+
+      <div class='flex items-start justify-center gap-x-2'>
+        <div class='flex flex-col items-center justify-center gap-y-4'>
+          <div class='w-64 h-10 grid grid-cols-3 gap-2'>
+            <button class='rounded focus:outline-none hover:bg-orange-500 font-bold text-2xl bg-orange-400' id='clear-button'>C</button>
+            <button class='rounded focus:outline-none hover:bg-gray-500 font-bold text-2xl bg-gray-400 operator'>/</button>
+            <button class='rounded focus:outline-none hover:bg-gray-500 font-bold text-2xl bg-gray-400 operator'>x</button>
+          </div>
+
+          <div class='w-64 h-64 grid grid-cols-3 gap-2'>
+            <button class='rounded focus:outline-none hover:bg-gray-300 font-bold text-2xl number'>7</button>
+            <button class='rounded focus:outline-none hover:bg-gray-300 font-bold text-2xl number'>8</button>
+            <button class='rounded focus:outline-none hover:bg-gray-300 font-bold text-2xl number'>9</button>
+            <button class='rounded focus:outline-none hover:bg-gray-300 font-bold text-2xl number'>4</button>
+            <button class='rounded focus:outline-none hover:bg-gray-300 font-bold text-2xl number'>5</button>
+            <button class='rounded focus:outline-none hover:bg-gray-300 font-bold text-2xl number'>6</button>
+            <button class='rounded focus:outline-none hover:bg-gray-300 font-bold text-2xl number'>1</button>
+            <button class='rounded focus:outline-none hover:bg-gray-300 font-bold text-2xl number'>2</button>
+            <button class='rounded focus:outline-none hover:bg-gray-300 font-bold text-2xl number'>3</button>
+            <button class='rounded focus:outline-none hover:bg-gray-300 font-bold text-2xl number w-64'>0</button>
+          </div>
+
+          </div>
+
+          <div class='w-20 h-48 grid grid-cols-1 gap-2'>
+            <button class='rounded focus:outline-none hover:bg-red-600 font-bold text-2xl bg-red-500' id='delete-button'>Del</button>
+            <button class='rounded focus:outline-none hover:bg-gray-500 font-bold text-2xl bg-gray-400 operator'>+</button>
+            <button class='rounded focus:outline-none hover:bg-gray-500 font-bold text-2xl bg-gray-400 operator'>-</button>
+            <button class='rounded focus:outline-none hover:bg-green-600 font-bold text-2xl bg-green-500' id='result-button'>=</button>
+          </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
