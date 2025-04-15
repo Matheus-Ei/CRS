@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express";
 
 const app = express();
-app.use(express.json())
+app.use(express.json());
 const port = 5000;
 
 app.post("/users/age/:age", (req, res) => {
@@ -29,25 +29,24 @@ const users = [
   { id: 7, name: "Giovana", age: 24 },
   { id: 8, name: "Henrique", age: 27 },
   { id: 9, name: "Isabela", age: 29 },
-  { id: 10, name: "João", age: 31 }
+  { id: 10, name: "João", age: 31 },
 ];
 
-app.get('/users/:id', (req, res) => {
+app.get("/users/:id", (req, res) => {
   const { id } = req.params;
 
   res.status(200).send(users.filter((u) => u.id === Number(id)));
-})
+});
 
-app.get('/users', (req, res) => {
+app.get("/users", (req, res) => {
   const { age } = req.query;
 
-  if(age) {
+  if (age) {
     res.status(200).send(users.filter((u) => u.age === Number(age)));
   } else {
     res.status(200).send(users);
   }
-
-})
+});
 
 app.listen(port, () => {
   console.clear();
