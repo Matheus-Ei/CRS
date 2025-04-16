@@ -1,5 +1,5 @@
-import userRoute from "./userRoute.js";
+import clientRoute from "./clientRoute.js";
 
 export const Routes = (app) => {
-  userRoute(app);
+  clientRoute(app);
 };

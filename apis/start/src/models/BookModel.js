@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize'
 import { sequelize } from '../config/postgres.js'
 
-export const ClientModel = sequelize.define(
-  'clients', 
+export const BookModel = sequelize.define(
+  'books', 
 
   {
     id: {
@@ -13,14 +13,13 @@ export const ClientModel = sequelize.define(
 
     name: {
       type: DataTypes.STRING(100),
+      unique: true,
       allowNull: false,
     },
 
-    cpf: {
-      type: DataTypes.STRING(15),
-      allowNull: false,
-      unique: true
-    },
+    description: {
+      type: DataTypes.TEXT
+    }
   },
   {
     timestamps: true
