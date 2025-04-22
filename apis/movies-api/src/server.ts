@@ -1,15 +1,17 @@
 import "dotenv/config";
 
 import express, { Application } from "express";
-import { ROUTES } from "./routes";
+import { ROUTES } from "./core/routes";
 import cors from "cors";
 import { ENV } from "./core/enviroment";
+import { models } from "./core/models";
 
 class Server {
   public app: Application = express();
 
   constructor() {
     this.middleware();
+    this.models();
     this.routes();
   }
 
@@ -30,6 +32,10 @@ class Server {
     ROUTES.forEach(({ endpoint, router }) => {
       this.app.use(endpoint, router);
     });
+  };
+
+  private models = () => {
+    return models();
   };
 
   listen = () => {

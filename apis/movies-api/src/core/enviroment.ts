@@ -9,7 +9,7 @@ export const ENV = {
   DATABASE_NAME: getEnv<string>("DATABASE_NAME"),
   DATABASE_HOST: getEnv<string>("DATABASE_HOST"),
   DATABASE_PORT: getEnv<number>("DATABASE_PORT"),
-  DATABASE_USER: getEnv<string>("DATABASE_USER"),
+  DATABASE_USERNAME: getEnv<string>("DATABASE_USERNAME"),
   DATABASE_PASSWORD: getEnv<string>("DATABASE_PASSWORD"),
 
   // Server

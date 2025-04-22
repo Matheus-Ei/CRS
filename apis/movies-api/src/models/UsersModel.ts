@@ -28,7 +28,7 @@ export default sequelize.define(
 
     isStudent: {
       type: DataTypes.BOOLEAN,
-      field: 'is_student'
+      field: "is_student",
     },
   },
 

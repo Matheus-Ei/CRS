@@ -4,6 +4,6 @@ export class User {
     public name: string,
     public email: string,
     public cpf: string,
-    public isStudent?: boolean
+    public isStudent?: boolean,
   ) {}
 }

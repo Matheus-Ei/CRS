@@ -3,23 +3,43 @@ import SessionsModel from "../models/SessionsModel";
 
 export class SessionService {
   static get = async (id: number) => {
-    return await SessionsModel.findOne({ where: { id } });
+    try {
+      return await SessionsModel.findOne({ where: { id } });
+    } catch {
+      return null;
+    }
   };
 
   static getAll = async () => {
-    return await SessionsModel.findAll();
+    try {
+      return await SessionsModel.findAll();
+    } catch {
+      return null;
+    }
   };
 
-  static create = async (data: Omit<Session, 'id'>) => {
-    return await SessionsModel.create(data);
+  static create = async (data: Omit<Session, "id">) => {
+    try {
+      return await SessionsModel.create(data);
+    } catch {
+      return null;
+    }
   };
 
   static update = async (id: number, data: Partial<Session>) => {
-    await SessionsModel.update(data, { where: { id } });
-    return await SessionsModel.findOne({ where: { id } });
+    try {
+      await SessionsModel.update(data, { where: { id } });
+      return await SessionsModel.findOne({ where: { id } });
+    } catch {
+      return null;
+    }
   };
 
   static destroy = async (id: number) => {
-    await SessionsModel.destroy({ where: { id } });
+    try {
+      await SessionsModel.destroy({ where: { id } });
+    } catch {
+      return null;
+    }
   };
 }

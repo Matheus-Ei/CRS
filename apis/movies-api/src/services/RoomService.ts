@@ -3,23 +3,43 @@ import RoomsModel from "../models/RoomsModel";
 
 export class RoomService {
   static get = async (id: number) => {
-    return await RoomsModel.findOne({ where: { id } });
+    try {
+      return await RoomsModel.findOne({ where: { id } });
+    } catch {
+      return null;
+    }
   };
 
   static getAll = async () => {
-    return await RoomsModel.findAll();
+    try {
+      return await RoomsModel.findAll();
+    } catch {
+      return null;
+    }
   };
 
-  static create = async (data: Omit<Room, 'id'>) => {
-    return await RoomsModel.create(data);
+  static create = async (data: Omit<Room, "id">) => {
+    try {
+      return await RoomsModel.create(data);
+    } catch {
+      return null;
+    }
   };
 
   static update = async (id: number, data: Partial<Room>) => {
-    await RoomsModel.update(data, { where: { id } });
-    return await RoomsModel.findOne({ where: { id } });
+    try {
+      await RoomsModel.update(data, { where: { id } });
+      return await RoomsModel.findOne({ where: { id } });
+    } catch {
+      return null;
+    }
   };
 
   static destroy = async (id: number) => {
-    await RoomsModel.destroy({ where: { id } });
+    try {
+      await RoomsModel.destroy({ where: { id } });
+    } catch {
+      return null;
+    }
   };
 }

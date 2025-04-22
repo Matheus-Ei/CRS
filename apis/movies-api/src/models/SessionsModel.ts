@@ -14,40 +14,39 @@ export default sequelize.define(
     movieId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'movie_id',
+      field: "movie_id",
       references: {
-        model: 'movies',
-        key: 'id'
-      }
+        model: "movies",
+        key: "id",
+      },
     },
 
     roomId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'room_id',
+      field: "room_id",
       references: {
-        model: 'rooms',
-        key: 'id'
-      }
+        model: "rooms",
+        key: "id",
+      },
     },
 
     startDate: {
       type: DataTypes.DATE,
-      field: 'start_date',
+      field: "start_date",
       allowNull: false,
     },
 
     endDate: {
       type: DataTypes.DATE,
-      field: 'end_date',
+      field: "end_date",
       allowNull: false,
     },
 
     price: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
-
   },
 
   {

@@ -3,23 +3,43 @@ import UserSessionsModel from "../models/UserSessionsModel";
 
 export class UserSessionService {
   static get = async (id: number) => {
-    return await UserSessionsModel.findOne({ where: { id } });
+    try {
+      return await UserSessionsModel.findOne({ where: { id } });
+    } catch {
+      return null;
+    }
   };
 
   static getAll = async () => {
-    return await UserSessionsModel.findAll();
+    try {
+      return await UserSessionsModel.findAll();
+    } catch {
+      return null;
+    }
   };
 
-  static create = async (data: Omit<UserSession, 'id'>) => {
-    return await UserSessionsModel.create(data);
+  static create = async (data: Omit<UserSession, "id">) => {
+    try {
+      return await UserSessionsModel.create(data);
+    } catch {
+      return null;
+    }
   };
 
   static update = async (id: number, data: Partial<UserSession>) => {
-    await UserSessionsModel.update(data, { where: { id } });
-    return await UserSessionsModel.findOne({ where: { id } });
+    try {
+      await UserSessionsModel.update(data, { where: { id } });
+      return await UserSessionsModel.findOne({ where: { id } });
+    } catch {
+      return null;
+    }
   };
 
   static destroy = async (id: number) => {
-    await UserSessionsModel.destroy({ where: { id } });
+    try {
+      await UserSessionsModel.destroy({ where: { id } });
+    } catch {
+      return null;
+    }
   };
 }

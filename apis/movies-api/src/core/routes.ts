@@ -1,7 +1,7 @@
-import { MovieRoute } from "./MovieRoute";
-import { RoomRoute } from "./RoomRoute";
-import { SessionRoute } from "./SessionRoute";
-import { UserRoute } from "./UserRoute";
+import { MovieRoute } from "../routes/MovieRoute";
+import { RoomRoute } from "../routes/RoomRoute";
+import { SessionRoute } from "../routes/SessionRoute";
+import { UserRoute } from "../routes/UserRoute";
 
 export const ROUTES = [
   { endpoint: "/users", router: UserRoute.init() },

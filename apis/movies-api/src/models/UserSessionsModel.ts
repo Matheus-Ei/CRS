@@ -14,21 +14,21 @@ export default sequelize.define(
     sessionId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'session_id',
+      field: "session_id",
       references: {
-        model: 'sessions',
-        key: 'id'
-      }
+        model: "sessions",
+        key: "id",
+      },
     },
 
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'user_id',
+      field: "user_id",
       references: {
-        model: 'users',
-        key: 'id'
-      }
+        model: "users",
+        key: "id",
+      },
     },
   },
 

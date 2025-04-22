@@ -7,7 +7,6 @@
     "dev": "nodemon",
     "build": "tsc",
     "format": "prettier --write ./src/",
-    "prepare": "lefthook install",
     "start": "node dist/index.js"
   },
   "keywords": [],
