@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import { sequelize } from "../core/database";
 
 export default sequelize.define(
-  "rooms",
+  "places",
 
   {
     id: {
@@ -11,19 +11,23 @@ export default sequelize.define(
       autoIncrement: true,
     },
 
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-
     placePatternId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: "place_pattern_id",
       references: {
         model: "place_patterns",
         key: "id",
       },
+    },
+
+    row: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+
+    column: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
   },
 

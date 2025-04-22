@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { UserSessionService } from "../services/UserSessionService";
+import { TicketService } from "../services/TicketService";
 import { Res } from "../utils/response";
 
-export class UserSessionController {
+export class TicketController {
   static get = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     try {
-      const resource = UserSessionService.get(Number(id));
+      const resource = TicketService.get(Number(id));
 
       return Res.sendByType(res, "found", undefined, resource);
     } catch (error) {
@@ -17,7 +17,7 @@ export class UserSessionController {
 
   static getAll = async (_: Request, res: Response) => {
     try {
-      const resource = UserSessionService.getAll();
+      const resource = TicketService.getAll();
 
       return Res.sendByType(res, "found", undefined, resource);
     } catch (error) {
@@ -29,7 +29,7 @@ export class UserSessionController {
     const data = req.body;
 
     try {
-      const resource = await UserSessionService.create(data);
+      const resource = await TicketService.create(data);
 
       return Res.sendByType(res, "created", undefined, resource);
     } catch (error) {
@@ -42,7 +42,7 @@ export class UserSessionController {
     const data = req.body;
 
     try {
-      const resource = await UserSessionService.update(Number(id), data);
+      const resource = await TicketService.update(Number(id), data);
 
       return Res.sendByType(res, "updated", undefined, resource);
     } catch (error) {
@@ -54,7 +54,7 @@ export class UserSessionController {
     try {
       const { id } = req.params;
 
-      await UserSessionService.destroy(Number(id));
+      await TicketService.destroy(Number(id));
 
       return Res.sendByType(res, "deleted");
     } catch (error) {

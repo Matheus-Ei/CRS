@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import { sequelize } from "../core/database";
 
 export default sequelize.define(
-  "user_sessions",
+  "tickets",
 
   {
     id: {
@@ -27,6 +27,16 @@ export default sequelize.define(
       field: "user_id",
       references: {
         model: "users",
+        key: "id",
+      },
+    },
+
+    placeId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "place_id",
+      references: {
+        model: "places",
         key: "id",
       },
     },

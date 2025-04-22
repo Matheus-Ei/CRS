@@ -22,7 +22,6 @@ export class UserService {
     try {
       return await UsersModel.create(data);
     } catch (error) {
-      // console.error(error);
       return null;
     }
   };
