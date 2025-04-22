@@ -1,14 +1,12 @@
+import { Application } from "express";
 import { TicketController } from "../controllers/TicketController";
-import { AbstractRoute } from "./AbstractRoute";
 
-export class TicketRoute extends AbstractRoute {
-  static init = () => {
-    this.router.post("/", TicketController.create);
-    this.router.patch("/:id", TicketController.update);
-    this.router.delete("/:id", TicketController.destroy);
-    this.router.get("/:id", TicketController.get);
-    this.router.get("/", TicketController.getAll);
-
-    return this.router;
+export class TicketRoute {
+  static init = (app: Application) => {
+    app.post("/tickets/", TicketController.create);
+    app.patch("/tickets/:id", TicketController.update);
+    app.delete("/tickets/:id", TicketController.destroy);
+    app.get("/tickets/:id", TicketController.get);
+    app.get("/tickets/", TicketController.getAll);
   };
 }

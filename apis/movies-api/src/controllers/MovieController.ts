@@ -7,7 +7,8 @@ export class MovieController {
     const { id } = req.params;
 
     try {
-      const resource = MovieService.get(Number(id));
+      const resource = await MovieService.get(Number(id));
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "found", undefined, resource);
     } catch (error) {
@@ -17,7 +18,8 @@ export class MovieController {
 
   static getAll = async (_: Request, res: Response) => {
     try {
-      const resource = MovieService.getAll();
+      const resource = await MovieService.getAll();
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "found", undefined, resource);
     } catch (error) {
@@ -30,6 +32,7 @@ export class MovieController {
 
     try {
       const resource = await MovieService.create(data);
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "created", undefined, resource);
     } catch (error) {
@@ -43,6 +46,7 @@ export class MovieController {
 
     try {
       const resource = await MovieService.update(Number(id), data);
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "updated", undefined, resource);
     } catch (error) {

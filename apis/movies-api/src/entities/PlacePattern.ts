@@ -1,5 +1,3 @@
-export class PlacesPattern {
-  constructor(
-    public id: number,
-  ) {}
+export class PlacePattern {
+  constructor(public id: number) {}
 }

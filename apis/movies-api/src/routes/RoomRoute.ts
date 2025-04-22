@@ -1,14 +1,12 @@
+import { Application } from "express";
 import { RoomController } from "../controllers/RoomController";
-import { AbstractRoute } from "./AbstractRoute";
 
-export class RoomRoute extends AbstractRoute {
-  static init = () => {
-    this.router.post("/", RoomController.create);
-    this.router.patch("/:id", RoomController.update);
-    this.router.delete("/:id", RoomController.destroy);
-    this.router.get("/:id", RoomController.get);
-    this.router.get("/", RoomController.getAll);
-
-    return this.router;
+export class RoomRoute {
+  static init = (app: Application) => {
+    app.post("/rooms/", RoomController.create);
+    app.patch("/rooms/:id", RoomController.update);
+    app.delete("/rooms/:id", RoomController.destroy);
+    app.get("/rooms/:id", RoomController.get);
+    app.get("/rooms/", RoomController.getAll);
   };
 }

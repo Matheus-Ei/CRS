@@ -1,14 +1,12 @@
 import { UserController } from "../controllers/UserController";
-import { AbstractRoute } from "./AbstractRoute";
+import { Application } from "express";
 
-export class UserRoute extends AbstractRoute {
-  static init = () => {
-    this.router.post("/", UserController.create);
-    this.router.patch("/:id", UserController.update);
-    this.router.delete("/:id", UserController.destroy);
-    this.router.get("/:id", UserController.get);
-    this.router.get("/", UserController.getAll);
-
-    return this.router;
+export class UserRoute {
+  static init = (app: Application) => {
+    app.post("/users/", UserController.create);
+    app.patch("/users/:id", UserController.update);
+    app.delete("/users/:id", UserController.destroy);
+    app.get("/users/:id", UserController.get);
+    app.get("/users/", UserController.getAll);
   };
 }

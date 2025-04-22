@@ -7,7 +7,8 @@ export class SessionController {
     const { id } = req.params;
 
     try {
-      const resource = SessionService.get(Number(id));
+      const resource = await SessionService.get(Number(id));
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "found", undefined, resource);
     } catch (error) {
@@ -17,7 +18,8 @@ export class SessionController {
 
   static getAll = async (_: Request, res: Response) => {
     try {
-      const resource = SessionService.getAll();
+      const resource = await SessionService.getAll();
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "found", undefined, resource);
     } catch (error) {
@@ -30,6 +32,7 @@ export class SessionController {
 
     try {
       const resource = await SessionService.create(data);
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "created", undefined, resource);
     } catch (error) {
@@ -43,6 +46,7 @@ export class SessionController {
 
     try {
       const resource = await SessionService.update(Number(id), data);
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "updated", undefined, resource);
     } catch (error) {

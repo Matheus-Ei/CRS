@@ -13,6 +13,6 @@ export default sequelize.define(
   },
 
   {
-    timestamps: true,
+    timestamps: false,
   },
 );

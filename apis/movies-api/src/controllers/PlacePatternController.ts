@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { UserService } from "../services/UserService";
+import { PlacePatternService } from "../services/PlacePatternService";
 import { Res } from "../utils/response";
 
-export class UserController {
+export class PlacePatternController {
   static get = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     try {
-      const resource = await UserService.get(Number(id));
+      const resource = await PlacePatternService.get(Number(id));
       if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "found", undefined, resource);
@@ -18,7 +18,7 @@ export class UserController {
 
   static getAll = async (_: Request, res: Response) => {
     try {
-      const resource = await UserService.getAll();
+      const resource = await PlacePatternService.getAll();
       if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "found", undefined, resource);
@@ -27,11 +27,9 @@ export class UserController {
     }
   };
 
-  static create = async (req: Request, res: Response) => {
-    const data = req.body;
-
+  static create = async (_: Request, res: Response) => {
     try {
-      const resource = await UserService.create(data);
+      const resource = await PlacePatternService.create();
       if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "created", undefined, resource);
@@ -45,7 +43,7 @@ export class UserController {
     const data = req.body;
 
     try {
-      const resource = await UserService.update(Number(id), data);
+      const resource = await PlacePatternService.update(Number(id), data);
       if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "updated", undefined, resource);
@@ -58,7 +56,7 @@ export class UserController {
     try {
       const { id } = req.params;
 
-      await UserService.destroy(Number(id));
+      await PlacePatternService.destroy(Number(id));
 
       return Res.sendByType(res, "deleted");
     } catch (error) {

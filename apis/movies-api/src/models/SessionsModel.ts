@@ -32,14 +32,8 @@ export default sequelize.define(
     },
 
     startDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       field: "start_date",
-      allowNull: false,
-    },
-
-    endDate: {
-      type: DataTypes.DATE,
-      field: "end_date",
       allowNull: false,
     },
 

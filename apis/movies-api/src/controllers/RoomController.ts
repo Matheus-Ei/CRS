@@ -7,7 +7,8 @@ export class RoomController {
     const { id } = req.params;
 
     try {
-      const resource = RoomService.get(Number(id));
+      const resource = await RoomService.get(Number(id));
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "found", undefined, resource);
     } catch (error) {
@@ -17,7 +18,8 @@ export class RoomController {
 
   static getAll = async (_: Request, res: Response) => {
     try {
-      const resource = RoomService.getAll();
+      const resource = await RoomService.getAll();
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "found", undefined, resource);
     } catch (error) {
@@ -30,6 +32,7 @@ export class RoomController {
 
     try {
       const resource = await RoomService.create(data);
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "created", undefined, resource);
     } catch (error) {
@@ -43,6 +46,7 @@ export class RoomController {
 
     try {
       const resource = await RoomService.update(Number(id), data);
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "updated", undefined, resource);
     } catch (error) {

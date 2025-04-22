@@ -7,7 +7,8 @@ export class TicketController {
     const { id } = req.params;
 
     try {
-      const resource = TicketService.get(Number(id));
+      const resource = await TicketService.get(Number(id));
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "found", undefined, resource);
     } catch (error) {
@@ -17,7 +18,8 @@ export class TicketController {
 
   static getAll = async (_: Request, res: Response) => {
     try {
-      const resource = TicketService.getAll();
+      const resource = await TicketService.getAll();
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "found", undefined, resource);
     } catch (error) {
@@ -30,6 +32,7 @@ export class TicketController {
 
     try {
       const resource = await TicketService.create(data);
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "created", undefined, resource);
     } catch (error) {
@@ -43,6 +46,7 @@ export class TicketController {
 
     try {
       const resource = await TicketService.update(Number(id), data);
+      if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "updated", undefined, resource);
     } catch (error) {

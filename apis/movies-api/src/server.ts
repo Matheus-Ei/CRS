@@ -1,7 +1,7 @@
 import "dotenv/config";
 
 import express, { Application } from "express";
-import { ROUTES } from "./core/routes";
+import { routes } from "./core/routes";
 import cors from "cors";
 import { ENV } from "./core/enviroment";
 import { models } from "./core/models";
@@ -29,9 +29,7 @@ class Server {
   };
 
   routes = () => {
-    ROUTES.forEach(({ endpoint, router }) => {
-      this.app.use(endpoint, router);
-    });
+    routes(this.app);
   };
 
   private models = () => {

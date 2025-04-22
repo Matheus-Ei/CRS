@@ -3,8 +3,7 @@ export class Session {
     public id: number,
     public movieId: number,
     public roomId: number,
-    public startDate: Date,
-    public endDate: Date,
+    public startDate: string,
     public price: number,
   ) {}
 }
