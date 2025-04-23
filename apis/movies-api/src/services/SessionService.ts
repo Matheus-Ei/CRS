@@ -1,45 +1,51 @@
+import { QueryTypes } from "sequelize";
+import { sequelize } from "../core/database";
+import { Place } from "../entities/Place";
 import { Session } from "../entities/Session";
 import SessionsModel from "../models/SessionsModel";
 
 export class SessionService {
   static get = async (id: number) => {
-    try {
-      return await SessionsModel.findOne({ where: { id } });
-    } catch {
-      return null;
-    }
+    return await SessionsModel.findOne({ where: { id } });
   };
 
   static getAll = async () => {
-    try {
-      return await SessionsModel.findAll();
-    } catch {
-      return null;
-    }
+    return await SessionsModel.findAll();
+  };
+
+  static findFreePlaces = async (id: number) => {
+    const response = await sequelize.query<Place[]>(
+      `
+        SELECT DISTINCT
+          p.id,
+          p.row,
+          p.column
+        FROM sessions s
+          JOIN rooms r ON r.id = s.room_id
+          JOIN place_patterns pp ON pp.id = r.place_pattern_id
+          JOIN places p ON p."placePatternId" = pp.id
+        WHERE s.id = :id AND p.id NOT IN (SELECT id FROM tickets WHERE session_id = s.id)
+        ORDER BY p.row, p.column
+      `,
+      {
+        replacements: { id },
+        type: QueryTypes.SELECT,
+      },
+    );
+
+    return response;
   };
 
   static create = async (data: Omit<Session, "id">) => {
-    try {
-      return await SessionsModel.create(data);
-    } catch {
-      return null;
-    }
+    return await SessionsModel.create(data);
   };
 
   static update = async (id: number, data: Partial<Session>) => {
-    try {
-      await SessionsModel.update(data, { where: { id } });
-      return await SessionsModel.findOne({ where: { id } });
-    } catch {
-      return null;
-    }
+    await SessionsModel.update(data, { where: { id } });
+    return await SessionsModel.findOne({ where: { id } });
   };
 
   static destroy = async (id: number) => {
-    try {
-      await SessionsModel.destroy({ where: { id } });
-    } catch {
-      return null;
-    }
+    await SessionsModel.destroy({ where: { id } });
   };
 }

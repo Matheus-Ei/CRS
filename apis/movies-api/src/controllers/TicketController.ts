@@ -40,6 +40,19 @@ export class TicketController {
     }
   };
 
+  static buy = async (req: Request, res: Response) => {
+    const data = req.body;
+
+    try {
+      const resource = await TicketService.buy(data);
+      if (!resource) return Res.sendByType(res, "internalError");
+
+      return Res.sendByType(res, "created", undefined, resource);
+    } catch (error) {
+      return Res.sendByType(res, "internalError", error);
+    }
+  };
+
   static update = async (req: Request, res: Response) => {
     const { id } = req.params;
     const data = req.body;

@@ -8,5 +8,6 @@ export class SessionRoute {
     app.delete("/sessions/:id", SessionController.destroy);
     app.get("/sessions/:id", SessionController.get);
     app.get("/sessions/", SessionController.getAll);
+    app.get("/sessions/places/free/:id", SessionController.getFreePlaces);
   };
 }

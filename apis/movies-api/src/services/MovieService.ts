@@ -3,43 +3,23 @@ import MoviesModel from "../models/MoviesModel";
 
 export class MovieService {
   static get = async (id: number) => {
-    try {
-      return await MoviesModel.findOne({ where: { id } });
-    } catch {
-      return null;
-    }
+    return await MoviesModel.findOne({ where: { id } });
   };
 
   static getAll = async () => {
-    try {
-      return await MoviesModel.findAll();
-    } catch {
-      return null;
-    }
+    return await MoviesModel.findAll();
   };
 
   static create = async (data: Omit<Movie, "id">) => {
-    try {
-      return await MoviesModel.create(data);
-    } catch {
-      return null;
-    }
+    return await MoviesModel.create(data);
   };
 
   static update = async (id: number, data: Partial<Movie>) => {
-    try {
-      await MoviesModel.update(data, { where: { id } });
-      return await MoviesModel.findOne({ where: { id } });
-    } catch {
-      return null;
-    }
+    await MoviesModel.update(data, { where: { id } });
+    return await MoviesModel.findOne({ where: { id } });
   };
 
   static destroy = async (id: number) => {
-    try {
-      await MoviesModel.destroy({ where: { id } });
-    } catch {
-      return null;
-    }
+    await MoviesModel.destroy({ where: { id } });
   };
 }

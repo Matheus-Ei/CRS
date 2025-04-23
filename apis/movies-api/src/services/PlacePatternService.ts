@@ -3,43 +3,23 @@ import PlacePatternsModel from "../models/PlacesPatternModel";
 
 export class PlacePatternService {
   static get = async (id: number) => {
-    try {
-      return await PlacePatternsModel.findOne({ where: { id } });
-    } catch {
-      return null;
-    }
+    return await PlacePatternsModel.findOne({ where: { id } });
   };
 
   static getAll = async () => {
-    try {
-      return await PlacePatternsModel.findAll();
-    } catch {
-      return null;
-    }
+    return await PlacePatternsModel.findAll();
   };
 
   static create = async () => {
-    try {
-      return await PlacePatternsModel.create();
-    } catch {
-      return null;
-    }
+    return await PlacePatternsModel.create();
   };
 
   static update = async (id: number, data: Partial<PlacePattern>) => {
-    try {
-      await PlacePatternsModel.update(data, { where: { id } });
-      return await PlacePatternsModel.findOne({ where: { id } });
-    } catch {
-      return null;
-    }
+    await PlacePatternsModel.update(data, { where: { id } });
+    return await PlacePatternsModel.findOne({ where: { id } });
   };
 
   static destroy = async (id: number) => {
-    try {
-      await PlacePatternsModel.destroy({ where: { id } });
-    } catch {
-      return null;
-    }
+    await PlacePatternsModel.destroy({ where: { id } });
   };
 }

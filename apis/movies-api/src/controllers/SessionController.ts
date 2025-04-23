@@ -27,6 +27,19 @@ export class SessionController {
     }
   };
 
+  static getFreePlaces = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    try {
+      const resource = await SessionService.findFreePlaces(Number(id));
+      if (!resource) return Res.sendByType(res, "internalError");
+
+      return Res.sendByType(res, "found", undefined, resource);
+    } catch (error) {
+      return Res.sendByType(res, "internalError", error);
+    }
+  };
+
   static create = async (req: Request, res: Response) => {
     const data = req.body;
 

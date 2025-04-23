@@ -3,43 +3,23 @@ import PlacesModel from "../models/PlacesModel";
 
 export class PlaceService {
   static get = async (id: number) => {
-    try {
-      return await PlacesModel.findOne({ where: { id } });
-    } catch {
-      return null;
-    }
+    return await PlacesModel.findOne({ where: { id } });
   };
 
   static getAll = async () => {
-    try {
-      return await PlacesModel.findAll();
-    } catch {
-      return null;
-    }
+    return await PlacesModel.findAll();
   };
 
   static create = async (data: Omit<Place, "id">) => {
-    try {
-      return await PlacesModel.create(data);
-    } catch {
-      return null;
-    }
+    return await PlacesModel.create(data);
   };
 
   static update = async (id: number, data: Partial<Place>) => {
-    try {
-      await PlacesModel.update(data, { where: { id } });
-      return await PlacesModel.findOne({ where: { id } });
-    } catch {
-      return null;
-    }
+    await PlacesModel.update(data, { where: { id } });
+    return await PlacesModel.findOne({ where: { id } });
   };
 
   static destroy = async (id: number) => {
-    try {
-      await PlacesModel.destroy({ where: { id } });
-    } catch {
-      return null;
-    }
+    await PlacesModel.destroy({ where: { id } });
   };
 }

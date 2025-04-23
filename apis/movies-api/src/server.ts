@@ -11,7 +11,7 @@ class Server {
 
   constructor() {
     this.middleware();
-    this.models();
+    // this.models();
     this.routes();
   }
 
