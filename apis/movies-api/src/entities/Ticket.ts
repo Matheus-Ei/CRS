@@ -4,5 +4,6 @@ export class Ticket {
     public sessionId: number,
     public userId: number,
     public placeId: number,
+    public status: string,
   ) {}
 }

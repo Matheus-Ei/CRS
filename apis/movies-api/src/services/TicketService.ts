@@ -63,7 +63,7 @@ export class TicketService {
     return await TicketsModel.findOne({ where: { id } });
   };
 
-  static destroy = async (id: number) => {
-    await TicketsModel.destroy({ where: { id } });
+  static cancel = async (id: number) => {
+    await TicketsModel.update({ status: 'desactivated' }, { where: { id } });
   };
 }

@@ -71,7 +71,7 @@ export class TicketController {
     try {
       const { id } = req.params;
 
-      await TicketService.destroy(Number(id));
+      await TicketService.cancel(Number(id));
 
       return Res.sendByType(res, "deleted");
     } catch (error) {

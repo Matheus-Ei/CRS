@@ -11,6 +11,13 @@ export default sequelize.define(
       autoIncrement: true,
     },
 
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'active'
+    },
+
+
     sessionId: {
       type: DataTypes.INTEGER,
       allowNull: false,
