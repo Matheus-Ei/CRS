@@ -14,9 +14,8 @@ export default sequelize.define(
     status: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: 'active'
+      defaultValue: "active",
     },
-
 
     sessionId: {
       type: DataTypes.INTEGER,

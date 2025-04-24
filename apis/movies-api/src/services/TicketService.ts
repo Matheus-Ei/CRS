@@ -64,6 +64,6 @@ export class TicketService {
   };
 
   static cancel = async (id: number) => {
-    await TicketsModel.update({ status: 'desactivated' }, { where: { id } });
+    await TicketsModel.update({ status: "desactivated" }, { where: { id } });
   };
 }

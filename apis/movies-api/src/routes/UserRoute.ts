@@ -8,5 +8,6 @@ export class UserRoute {
     app.delete("/users/:id", UserController.destroy);
     app.get("/users/:id", UserController.get);
     app.get("/users/", UserController.getAll);
+    app.get("/users/:userId/sessions", UserController.getSessions);
   };
 }

@@ -16,6 +16,19 @@ export class SessionController {
     }
   };
 
+  static getFeedback = async (req: Request, res: Response) => {
+    const { sessionId } = req.params;
+
+    try {
+      const resource = await SessionService.getFeedback(Number(sessionId));
+      if (!resource) return Res.sendByType(res, "internalError");
+
+      return Res.sendByType(res, "found", undefined, resource);
+    } catch (error) {
+      return Res.sendByType(res, "internalError", error);
+    }
+  };
+
   static getAll = async (_: Request, res: Response) => {
     try {
       const resource = await SessionService.getAll();

@@ -13,6 +13,18 @@ export class SessionService {
     return await SessionsModel.findAll();
   };
 
+  static getFeedback = async (id: number) => {
+    return await sequelize.query(`
+      SELECT
+        COUNT(s.id)::INTEGER AS sold_places,
+        SUM(s.price) AS value_sold
+      FROM sessions s
+        JOIN tickets t ON t.session_id = s.id
+      GROUP BY s.id
+      HAVING s.id = :sessionId;
+`, { replacements: { sessionId: id }, type: QueryTypes.SELECT });
+  };
+
   static findFreePlaces = async (id: number) => {
     const response = await sequelize.query<Place[]>(
       `
