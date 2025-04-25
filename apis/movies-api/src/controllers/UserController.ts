@@ -5,7 +5,7 @@ import { Token } from "../utils/token";
 
 export class UserController {
   static get = async (req: Request, res: Response) => {
-    const id = Token.getId(req)
+    const id = Token.getId(req);
 
     try {
       const resource = await UserService.get(Number(id));
@@ -29,7 +29,7 @@ export class UserController {
   };
 
   static getSessions = async (req: Request, res: Response) => {
-    const id = Token.getId(req)
+    const id = Token.getId(req);
 
     try {
       const resource = await UserService.getSessions(Number(id));
@@ -68,7 +68,7 @@ export class UserController {
   };
 
   static update = async (req: Request, res: Response) => {
-    const id = Token.getId(req)
+    const id = Token.getId(req);
     const data = req.body;
 
     try {
@@ -83,7 +83,7 @@ export class UserController {
 
   static destroy = async (req: Request, res: Response) => {
     try {
-      const id = Token.getId(req)
+      const id = Token.getId(req);
 
       await UserService.destroy(Number(id));
 

@@ -11,7 +11,7 @@ export class Token {
     return token;
   }
 
-  public static verify(token: string, value: string, field: string, key: any) {
+  public static verify(token: string, field: string, key: any, value?: string) {
     try {
       const decoded: any = jwt.verify(token, key as string);
       const decValue: string = decoded[field];
@@ -31,7 +31,7 @@ export class Token {
   }
 
   public static getId(req: Request) {
-    const decode =  this.decode(
+    const decode = this.decode(
       String(String(req.headers.authorization).split(" ")[1]),
     ) as { id: string };
 
