@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import { UserService } from "../services/UserService";
 import { Res } from "../utils/response";
+import { Token } from "../utils/token";
 
 export class UserController {
   static get = async (req: Request, res: Response) => {
-    const { id } = req.params;
+    const id = Token.getId(req)
 
     try {
       const resource = await UserService.get(Number(id));
@@ -28,13 +29,26 @@ export class UserController {
   };
 
   static getSessions = async (req: Request, res: Response) => {
-    const { userId } = req.params;
+    const id = Token.getId(req)
 
     try {
-      const resource = await UserService.getSessions(Number(userId));
+      const resource = await UserService.getSessions(Number(id));
       if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "found", undefined, resource);
+    } catch (error) {
+      return Res.sendByType(res, "internalError", error);
+    }
+  };
+
+  static login = async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+
+    try {
+      const resource = await UserService.login(email, password);
+      if (!resource) return Res.sendByType(res, "badRequest");
+
+      return Res.sendByType(res, "success", undefined, resource);
     } catch (error) {
       return Res.sendByType(res, "internalError", error);
     }
@@ -54,7 +68,7 @@ export class UserController {
   };
 
   static update = async (req: Request, res: Response) => {
-    const { id } = req.params;
+    const id = Token.getId(req)
     const data = req.body;
 
     try {
@@ -69,7 +83,7 @@ export class UserController {
 
   static destroy = async (req: Request, res: Response) => {
     try {
-      const { id } = req.params;
+      const id = Token.getId(req)
 
       await UserService.destroy(Number(id));
 

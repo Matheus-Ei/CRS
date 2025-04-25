@@ -12,6 +12,8 @@ export const ENV = {
   DATABASE_USERNAME: getEnv<string>("DATABASE_USERNAME"),
   DATABASE_PASSWORD: getEnv<string>("DATABASE_PASSWORD"),
 
+  ACCESS_SECRET: getEnv<string>("ACCESS_SECRET"),
+
   // Server
   SERVER_PORT: getEnv<number>("SERVER_PORT"),
   NODE_ENV: getEnv<"development" | "production" | "test">("NODE_ENV"),

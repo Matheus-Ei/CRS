@@ -21,6 +21,11 @@ export default sequelize.define(
       allowNull: false,
     },
 
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+
     cpf: {
       type: DataTypes.STRING,
       allowNull: false,
