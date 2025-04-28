@@ -16,6 +16,11 @@ export default sequelize.define(
       allowNull: false,
     },
 
+    imagePath: {
+      field: "image_path",
+      type: DataTypes.TEXT,
+    },
+
     description: {
       type: DataTypes.TEXT,
       allowNull: false,

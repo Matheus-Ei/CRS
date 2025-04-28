@@ -17,6 +17,30 @@ export class UserController {
     }
   };
 
+  static recover = async (req: Request, res: Response) => {
+    const { email } = req.body;
+
+    try {
+      await UserService.recover(email);
+
+      return Res.sendByType(res, "success");
+    } catch (error) {
+      return Res.sendByType(res, "internalError", error);
+    }
+  };
+
+  static changePassword = async (req: Request, res: Response) => {
+    const { code, newPassword, email } = req.body;
+
+    try {
+      await UserService.changePassword(code, newPassword, email);
+
+      return Res.sendByType(res, "success");
+    } catch (error) {
+      return Res.sendByType(res, "internalError", error);
+    }
+  };
+
   static getAll = async (_: Request, res: Response) => {
     try {
       const resource = await UserService.getAll();

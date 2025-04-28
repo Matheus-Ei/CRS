@@ -11,6 +11,9 @@ export class UserRoute {
     app.get("/users/all", UserController.getAll);
     app.get("/users/:userId/sessions", UserController.getSessions);
 
+    app.post("/users/recover", UserController.recover);
+    app.post("/users/password", UserController.changePassword);
+
     app.post("/users/auth", UserController.login);
   };
 }

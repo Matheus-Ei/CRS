@@ -1,5 +1,7 @@
+import { Request } from "express";
 import { Movie } from "../entities/Movie";
 import MoviesModel from "../models/MoviesModel";
+import { Files } from "../utils/files";
 
 export class MovieService {
   static get = async (id: number) => {
@@ -10,8 +12,23 @@ export class MovieService {
     return await MoviesModel.findAll();
   };
 
-  static create = async (data: Omit<Movie, "id">) => {
-    return await MoviesModel.create(data);
+  static create = async (req: Request) => {
+    const { image } = req.files as any;
+
+    const movies = await MoviesModel.create({ ...req.body })
+
+    const filePath = await Files.save(image, {
+      table: "movies",
+      type: "image",
+      id: movies.dataValues.id,
+    });
+
+    await MoviesModel.update(
+      { imagePath: filePath },
+      { where: { id: movies.dataValues.id } },
+    );
+
+    return movies;
   };
 
   static update = async (id: number, data: Partial<Movie>) => {
@@ -20,6 +37,10 @@ export class MovieService {
   };
 
   static destroy = async (id: number) => {
+    const movie = await MoviesModel.findByPk(id);
+
+    await Files.delete(movie?.dataValues.imagePath);
+
     await MoviesModel.destroy({ where: { id } });
   };
 }

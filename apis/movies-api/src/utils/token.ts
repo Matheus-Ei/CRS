@@ -11,14 +11,11 @@ export class Token {
     return token;
   }
 
-  public static verify(token: string, field: string, key: any, value?: string) {
+  public static verify(token: string, key: any) {
     try {
-      const decoded: any = jwt.verify(token, key as string);
-      const decValue: string = decoded[field];
-
-      return decValue == value;
-    } catch (error) {
-      return false;
+      return jwt.verify(token, key as string) as any;
+    } catch {
+      throw new Error("The token is invalid");
     }
   }
 

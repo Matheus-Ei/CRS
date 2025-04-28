@@ -28,10 +28,8 @@ export class MovieController {
   };
 
   static create = async (req: Request, res: Response) => {
-    const data = req.body;
-
     try {
-      const resource = await MovieService.create(data);
+      const resource = await MovieService.create(req);
       if (!resource) return Res.sendByType(res, "internalError");
 
       return Res.sendByType(res, "created", undefined, resource);

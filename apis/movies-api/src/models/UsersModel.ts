@@ -36,6 +36,12 @@ export default sequelize.define(
       type: DataTypes.BOOLEAN,
       field: "is_student",
     },
+
+    recoveryToken: {
+      type: DataTypes.STRING,
+      field: "recovery_token",
+      defaultValue: null,
+    },
   },
 
   {

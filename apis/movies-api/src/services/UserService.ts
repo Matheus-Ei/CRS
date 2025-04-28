@@ -5,10 +5,53 @@ import UsersModel from "../models/UsersModel";
 import { Hash } from "../utils/hash";
 import { Token } from "../utils/token";
 import { ENV } from "../core/enviroment";
+import { Email } from "../utils/email";
 
 export class UserService {
   static get = async (id: number) => {
     return await UsersModel.findOne({ where: { id } });
+  };
+
+  static recover = async (userEmail: string) => {
+    const user = await UsersModel.findOne({ where: { email: userEmail } });
+    if (!user) throw new Error("This user does not exist in the system");
+
+    const code = (Math.random() * 1000000).toFixed(0);
+
+    const recoveryToken = Token.generate({ code }, 10000, ENV.ACCESS_SECRET);
+
+    await UsersModel.update({ recoveryToken }, { where: { email: userEmail } });
+
+    const email = new Email();
+
+    await email.send({
+      to: userEmail,
+      subject: "Recovery your account",
+      html: `<p>Your recovery code is ${code}</p>`,
+    });
+  };
+
+  static changePassword = async (
+    code: string,
+    newPassword: string,
+    email: string,
+  ) => {
+    const user = await UsersModel.findOne({ where: { email } });
+    if (!user) throw new Error("This user does not exist in the system");
+
+    const userTokenInfo = Token.verify(
+      user.dataValues.recoveryToken,
+      ENV.ACCESS_SECRET,
+    );
+
+    const isValid = userTokenInfo?.code === code;
+
+    if (!isValid) throw new Error("The code is incorrect");
+
+    await UsersModel.update(
+      { password: await Hash.make(newPassword) },
+      { where: { email } },
+    );
   };
 
   static login = async (email: string, password: string) => {
